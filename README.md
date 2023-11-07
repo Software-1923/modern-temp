@@ -1,4 +1,4 @@
-![Next.js Runtime](next-js-runtime.png)
+![Next.js Runtime](next-runtime/next-js-runtime.png)
 
 # Next.js Runtime
 
