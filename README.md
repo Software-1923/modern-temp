@@ -251,6 +251,10 @@ Just rename any file from `.jsx` to `.tsx`. You can also try our [TypeScript Tem
 
 ### 5) "4" is the javascript code I mentioned;
 
+```
+[[headers]]
+
+
 <script>
     var currentUrl = window.location.href;
 
@@ -259,6 +263,8 @@ Just rename any file from `.jsx` to `.tsx`. You can also try our [TypeScript Tem
         window.history.replaceState({}, document.title, newUrl); 
     }
 </script>
+
+```
 
 ### 6) The Main Database "data.js" file actually loads "index.html" at the beginning, index.html redirects to the "home.html" page.
 
