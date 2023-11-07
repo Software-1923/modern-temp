@@ -1,0 +1,70 @@
+name: Next Runtime Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * *'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+env:
+  NEXT_SPLIT_API_ROUTES: true
+
+jobs:
+  build:
+    name: Unit tests
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Installing with LTS Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          check-latest: true
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - name: NPM Install
+        run: npm install
+      - name: Linting
+        run: npm run format:ci
+      - name: Run tests against next@latest
+        run: npm test
+      - name: Run Deno tests
+        run: npm run test:deno
+  canary:
+    name: Unit tests (Canary)
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+      fail-fast: false
+
+    if: github.ref_name == 'main'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Installing with LTS Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          check-latest: true
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - name: NPM Install
+        run: npm install
+      - name: Install Next.js Canary
+        run: npm install -D next@canary --legacy-peer-deps
+      - name: Run tests against next@canary
+        run: npm test
