@@ -1,0 +1,16 @@
+name: Dependency License Scanning
+
+on:
+  push:
+    branches:
+      - main
+      - chore/fossa-workflow # convenience branch for future fossa tweaks
+
+jobs:
+  fossa-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: fossas/fossa-action@main # Use a specific version if locking is preferred
+        with:
+          api-key: ${{secrets.FOSSA_API_KEY}}
