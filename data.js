@@ -8,16 +8,16 @@ const PORT = process.env.PORT || 3001;
 app.use(express.static(path.join(__dirname, '../dist')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public', 'html', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'html', 'index.html'));
 });
 
 app.get('/:page', (req, res) => {
   const pageName = req.params.page;
-  const filePath = path.join(__dirname, '../public', 'html', pageName);
+  const filePath = path.join(__dirname, 'public', 'html', pageName);
 
   fs.access(filePath, fs.constants.F_OK, (err) => {
     if (err) {
-      return res.sendFile(path.join(__dirname, '../dist', 'error-page', '404.html'));
+      return res.sendFile(path.join(__dirname, 'dist', 'error-page', '404.html'));
     } else {
       return res.sendFile(filePath);
     }
