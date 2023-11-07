@@ -252,8 +252,6 @@ Just rename any file from `.jsx` to `.tsx`. You can also try our [TypeScript Tem
 ### 5) "4" is the javascript code I mentioned;
 
 ```
-[[headers]]
-
 
 <script>
     var currentUrl = window.location.href;
