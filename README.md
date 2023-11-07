@@ -267,7 +267,9 @@ Just rename any file from `.jsx` to `.tsx`. You can also try our [TypeScript Tem
 ### 6) The Main Database "data.js" file actually loads "index.html" at the beginning, index.html redirects to the "home.html" page.
 
 ### 7) Finally, if you want to update the error page, the first step is that you cannot use an external font, you have to choose the default fonts, secondly, you have to give the design codes in the "<style></style>" codes in the html, otherwise this happens: 
+```
 "<link rel="stylesheet" type="text/css" href="styles.css" />"
+```
 the code will not work.
 
 Original Developer Link: 
